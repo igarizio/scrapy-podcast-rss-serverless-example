@@ -1,0 +1,41 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  scrapy-podcast-rss-serverless-example
+
+Globals:
+  Function:
+    Timeout: 900  # Maximum timeout (900s = 15min).
+
+Resources:
+  ScrapePodcastsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: podcast_scraper_serverless/
+      Handler: app.lambda_handler
+      Runtime: python3.7
+      Policies:
+        - AWSLambdaExecute
+        - AmazonS3FullAccess
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /spider/{spider_name}  # Do not replace spider_name, the variable is passed from the path to tha lambda_handler.
+            Method: get
+#        EveryDay3amPT:  # Uncomment to schedule the scraper.
+#          Type: Schedule
+#          Properties:
+#            Schedule: cron(0 10 * * ? *)  # For example, 10AM UTC (currently, 3AM PT). More info here: https://docs.aws.amazon.com/lambda/latest/dg/services-cloudwatchevents-expressions.html
+#            Input: '{"spider_name": "minimal"}'  # Replace minimal with the name of the spider you want to schedule.
+
+Outputs:
+  ScrapePodcastsApi:
+    Description: "API Gateway endpoint URL (replace {spider_name} with the name of a spider, for example, minimal)"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/spider/{spider_name}"
+  ScrapePodcastsFunction:
+    Description: "Lambda Function ARN"
+    Value: !GetAtt ScrapePodcastsFunction.Arn
+  ScrapePodcastsFunctionIamRole:
+    Description: "Implicit IAM Role created"
+    Value: !GetAtt ScrapePodcastsFunctionRole.Arn

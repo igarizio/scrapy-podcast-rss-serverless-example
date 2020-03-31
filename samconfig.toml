@@ -1,0 +1,10 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "podcast-scraper-serverless"
+s3_bucket = "replace-code-store-s3-bucket-here"
+s3_prefix = "podcast-scraper-serverless"
+region = "us-west-2"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
