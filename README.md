@@ -26,6 +26,6 @@ $ sam deploy
 ## Firing a crawl
 1. Look up for ``ScrapePodcastsApi`` output when deploying.  
    The URL will look like ``https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/spider/{spider_name}``.  
-   Replace ``{spider_name}`` with the name of your spider (or ``minimal`` to run
+   Replace ``{spider_name}`` with the name of your spider (or with ``minimal`` to run
    the example).
 2. Make a get request to the URL.
