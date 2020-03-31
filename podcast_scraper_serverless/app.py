@@ -12,7 +12,7 @@ from custom_process import CustomProcess
 def spider_process(spider, settings=None):
     """Runs a scrapy CrawlerRunner"""
     runner = CrawlerRunner(settings)
-    deferred = runner.crawl(spider, max_episodes=3)
+    deferred = runner.crawl(spider)
     deferred.addBoth(lambda _: reactor.stop())
     reactor.run()
 
