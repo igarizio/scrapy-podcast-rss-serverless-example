@@ -23,8 +23,7 @@ class SampleSpider(scrapy.Spider):
 
         No matter how many requests you make, your spider needs to yield
         at least ONE PodcastDataItem and one PodcastEpisodeItem for each
-        episode before closing. The pipeline will order the PodcastEpisodeItems
-        based on the order of instantiation (not the order of yielding).
+        episode before closing.
 
         Keep in mind that this is a dummy spider. It serves only as an example.
         """
