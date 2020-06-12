@@ -1,4 +1,4 @@
-# scrapy-podcast-rss-serverless
+# scrapy-podcast-rss-serverless-example
 
 This is a serverless example for [scrapy-podcast-rss](https://github.com/igarizio/scrapy-podcast-rss).  
 To try it, you need to install scrapy-podcast-rss:
